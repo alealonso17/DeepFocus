@@ -9,7 +9,25 @@ import SwiftUI
 
 struct MainTabView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView{
+            TaskView()
+                .tabItem {
+                    Image(systemName: "checklist")
+                    Text("Tasks")
+                }
+            FocusView()
+                .tabItem{
+                    Image(systemName: "timer")
+                    Text("Focus")
+                }
+            ProgressView()
+                .tabItem{
+                    Image(systemName: "chart.line.uptrend.xyaxis").foregroundColor(.purple)
+                    Text("Progress")
+                }
+            
+        }
+        .accentColor(.blue)
     }
 }
 
