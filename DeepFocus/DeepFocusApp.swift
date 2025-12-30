@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct DeepFocusApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
-        }
+        }.modelContainer(for: TaskModel.self)
     }
 }
