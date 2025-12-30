@@ -6,70 +6,95 @@
 //
 
 import SwiftUI
-
 struct FocusView: View {
+
+    @State private var studyTime: Double = 25
+    @State private var breakTime: Double = 5
+
     var body: some View {
-        VStack{
-            HeaderView(title: "Pomodoro", description: "Configure your session")
-            VStack{
+        NavigationStack {
+            VStack {
+                HeaderView(title: "Pomodoro", description: "Configure your session")
+
                 Spacer()
-                VStack{
-                    FocusSlider(title: "Study Time", icon: Image(systemName: "brain"), from: 10.00, to: 90.00)
-                    FocusSlider(title: "Study Time", icon: Image(systemName: "brain"), from: 5.00, to:30.00)
-                }.frame(maxWidth: .infinity, maxHeight: 300)
-                    .background(.white)
-                    .cornerRadius(30)
-                    .padding(.horizontal, 20)
-                
-                Button{
-                    
-                }label:{
-                    HStack{
+
+                VStack {
+                    FocusSlider(
+                        title: "Study Time",
+                        icon: Image(systemName: "brain"),
+                        from: 10,
+                        to: 90,
+                        count: $studyTime
+                    )
+
+                    FocusSlider(
+                        title: "Break Time",
+                        icon: Image(systemName: "cup.and.saucer"),
+                        from: 5,
+                        to: 30,
+                        count: $breakTime
+                    )
+                }
+                .frame(maxWidth: .infinity, maxHeight: 300)
+                .background(.white)
+                .cornerRadius(30)
+                .padding(.horizontal, 20)
+
+               
+                NavigationLink {
+                    TimerView(
+                        studyMinutes: Int(studyTime),
+                        breakMinutes: Int(breakTime)
+                    )
+                } label: {
+                    HStack {
                         Image(systemName: "play.fill")
                             .foregroundColor(.white)
                         Text("Start Session")
                             .foregroundColor(.white)
                     }
-                }.frame(maxWidth: .infinity, maxHeight: 70)
+                    .frame(maxWidth: .infinity, maxHeight: 70)
                     .background(.blue)
                     .cornerRadius(16)
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)
+                }
+
                 Spacer()
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(.backgroundTask)
-                
+            }
+            .background(Color.backgroundTask)
         }
     }
 }
-
-
 struct FocusSlider: View {
-    let title:String
-    let icon:Image
-    let from:Double
-    let to:Double
-    @State var count:Double = 10.00
+    let title: String
+    let icon: Image
+    let from: Double
+    let to: Double
+    @Binding var count: Double   // 👈 binding
+
     var body: some View {
-        VStack{
-            HStack{
-                HStack{
-                    icon.bold().foregroundColor(.blue)
+        VStack {
+            HStack {
+                HStack {
+                    icon.foregroundColor(.blue)
                     Text(title)
                 }
                 Spacer()
-                Text("\(Int(count.rounded())) min").foregroundColor(.blue).bold()
-            }.frame(maxWidth: .infinity)
-                .padding(.horizontal, 60)
-                .padding(.vertical, 10)
-            
-            Slider(value:$count , in:from...to){
-                
-            }.padding(.horizontal, 50)
-            
-        }.frame(maxWidth: .infinity, maxHeight: 100)
+                Text("\(Int(count)) min")
+                    .foregroundColor(.blue)
+                    .bold()
+            }
+            .padding(.horizontal, 60)
+
+            Slider(value: $count, in: from...to)
+                .padding(.horizontal, 50)
+        }
+        .frame(maxHeight: 100)
     }
 }
+
+
 #Preview {
     FocusView()
 }
