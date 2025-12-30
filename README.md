@@ -27,18 +27,18 @@ It is a personal project built to practice **SwiftUI**, animations, state manage
 
 ---
 
+
 ## 📱 Screenshots
 
 ### 📝 Tasks View
-![Tasks View](TaskView.png)
+<img src="TaskView.png" width="240" />
 
 ### ⏱ Focus / Pomodoro View
-![Focus View](FocusView.png)
-![Focus View Alternative](FocusView2.png)
+<img src="FocusView.png" width="240" />
+<img src="FocusView2.png" width="240" />
 
 ### 📅 Progress / Calendar View
-![Calendar View](Calendar.png)
-
+<img src="Calendar.png" width="240" />
 ---
 
 ## 🎥 Demo Video
@@ -56,12 +56,14 @@ The video showcases:
 
 ## 🛠 Tech Stack
 
+## 🛠 Tech Stack
+
 - **Swift**
 - **SwiftUI**
+- **SwiftData** (local persistence)
 - **Combine** (Timer)
 - **Xcode**
 - Architecture based on `View + State`
-- No backend (local logic / frontend-focused project)
 
 ---
 
